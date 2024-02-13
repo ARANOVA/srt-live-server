@@ -376,11 +376,11 @@ int CSLSListener::handler()
     	return client_count;
     }
 
-    if (sid) {
-        sls_log(SLS_LOG_INFO, "[%p]CSLSListener::handler, [%s:%d], using sid '%s'", sid);
-    }else{
+    if (sid.empty()) {    
         strncpy(sid, "aranova.cloud/live/adeportes_deporte9", sizeof(sid));
-        sls_log(SLS_LOG_WARNING, "[%p]CSLSListener::handler, [%s:%d], sid is empty using default streamid '%s' instead", sid);
+        sls_log(SLS_LOG_WARNING, "[%p]CSLSListener::handler, [%s:%d], sid is empty using default streamid '%s' instead", this, peer_name, sid);
+    }else{
+        sls_log(SLS_LOG_INFO, "[%p]CSLSListener::handler, [%s:%d], using sid '%s'", this, peer_name, sid);
     }
 
     if (0 != srt->libsrt_split_sid(sid, host_name, app_name, stream_name)) {
