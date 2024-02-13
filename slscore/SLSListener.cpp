@@ -376,7 +376,7 @@ int CSLSListener::handler()
     	return client_count;
     }
 
-    if (sid.empty()) {    
+    if (sid[0] == '\0') {    
         strncpy(sid, "aranova.cloud/live/adeportes_deporte9", sizeof(sid));
         sls_log(SLS_LOG_WARNING, "[%p]CSLSListener::handler, [%s:%d], sid is empty using default streamid '%s' instead", this, peer_name, sid);
     }else{
