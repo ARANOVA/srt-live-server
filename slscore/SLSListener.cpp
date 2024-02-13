@@ -376,6 +376,11 @@ int CSLSListener::handler()
     	return client_count;
     }
 
+    if (sid == "") {
+        strncpy(sid, "aranova.cloud/live/livestream", sizeof(sid));
+        sls_log(SLS_LOG_WARNING, "[%p]CSLSListener::handler, [%s:%d], sid is empty using default streamid '%s' instead", sid);
+    }
+
     if (0 != srt->libsrt_split_sid(sid, host_name, app_name, stream_name)) {
         sls_log(SLS_LOG_ERROR, "[%p]CSLSListener::handler, [%s:%d], parse sid='%s' failed.", this, peer_name, peer_port, sid);
     	srt->libsrt_close();
