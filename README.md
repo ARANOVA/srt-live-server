@@ -14,6 +14,12 @@ SLS can only run on OS based on linux, such as mac, centos or ubuntu etc.
 Compile
 =======
 
+export XCFLAGS="-march=x86-64 -O3 -pipe"
+export CFLAGS="-march=x86-64 -O3 -pipe"
+export XCXXFLAGS="-march=x86-64 -O3 -pipe"
+export CXXFLAGS="-march=x86-64 -O3 -pipe"
+docker run -ti --name slsbuilder -v $(pwd):/tmp/srt-live-server alpine:3
+
 $ sudo make
 
 bin file is generated in subdir of 'bin'.
